@@ -6,5 +6,5 @@ const port = process.env.PORT || 5000
 const server = http.createServer(app)
 
 server.listen(port, () => {
-  console.log('server listen at localhost:${port}')
+  console.log(`server listen at http://localhost:${port}`)
 })

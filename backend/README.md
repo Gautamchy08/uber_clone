@@ -452,3 +452,132 @@ curl -X GET http://localhost:3000/users/profile \
   "message": "User profile not found"
 }
 ```
+
+## Captain Registration
+
+### Endpoint: `/captains/register`
+
+**Method:** POST
+
+**Description:**
+Register a new captain (driver) in the system.
+
+### Request Body
+
+```json
+{
+  "fullname": {
+    "firstname": "string",
+    "lastname": "string"
+  },
+  "email": "string",
+  "password": "string",
+  "vehicle": {
+    "colour": "string",
+    "plate": "string",
+    "model": "string",
+    "capacity": "number",
+    "vehicleType": "car" | "motorcycle" | "auto"
+  }
+}
+```
+
+### Required Fields
+
+- `fullname.firstname`: Minimum 3 characters
+- `email`: Valid email address
+- `password`: Minimum 6 characters
+- `vehicle.colour`: Minimum 3 characters
+- `vehicle.plate`: Minimum 3 characters
+- `vehicle.model`: Minimum 3 characters
+- `vehicle.capacity`: Minimum value of 1
+- `vehicle.vehicleType`: Must be one of: "car", "motorcycle", "auto"
+
+### Response
+
+#### Success Response
+
+**Status Code:** 200 (OK)
+
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "status": "active",
+    "vehicle": {
+      "colour": "string",
+      "plate": "string",
+      "model": "string",
+      "capacity": "number",
+      "vehicleType": "string"
+    },
+    "_id": "string"
+  }
+}
+```
+
+#### Error Responses
+
+**Status Code:** 400 (Bad Request)
+
+```json
+{
+  "errors": [
+    {
+      "field": "email",
+      "message": "Invalid email"
+    }
+  ]
+}
+```
+
+### Examples
+
+#### Example Request
+
+```bash
+curl -X POST http://localhost:3000/captains/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.driver@example.com",
+    "password": "securepass123",
+    "vehicle": {
+      "colour": "Black",
+      "plate": "XYZ123",
+      "model": "Toyota Camry",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }'
+```
+
+#### Example Success Response
+
+```json
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.driver@example.com",
+    "status": "active",
+    "vehicle": {
+      "colour": "Black",
+      "plate": "XYZ123",
+      "model": "Toyota Camry",
+      "capacity": 4,
+      "vehicleType": "car"
+    },
+    "_id": "65abcd1234567890"
+  }
+}
+```
