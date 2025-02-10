@@ -6,6 +6,8 @@ const { body } = require('express-validator')
 
 const userController = require('../controller/user.controller')
 
+const authMiddleware = require('../middleware/auth.middleware')
+
 router.post(
   '/register',
   [
@@ -17,5 +19,18 @@ router.post(
   ],
   userController.registerUser
 )
+
+router.post(
+  '/login',
+  [
+    body('email').isEmail().withMessage('invalid email'),
+    body('password').isLength({ min: 6 }).withMessage('must contain 6 length')
+  ],
+  userController.loginUser
+)
+
+router.get('/profile', authMiddleware.authUser, userController.getUsers)
+
+router.post('/logout', authMiddleware.authUser, userController.logoutUser)
 
 module.exports = router
