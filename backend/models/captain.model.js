@@ -85,8 +85,7 @@ captainSchema.methods.comparePassword = async function (password) {
   if (!password || !this.password) {
     throw new Error('Password missing for comparison.')
   }
-  console.log(password)
-  console.log(this.password)
+
   return await bcrypt.compare(password, this.password)
 }
 

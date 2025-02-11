@@ -581,3 +581,184 @@ curl -X POST http://localhost:3000/captains/register \
   }
 }
 ```
+
+## Captain Login
+
+### Endpoint: `/captains/login`
+
+**Method:** POST
+
+**Description:**
+Authenticate a captain and generate an access token.
+
+### Request Body
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+### Required Fields
+
+- `email`: Valid email address
+- `password`: Minimum 6 characters
+
+### Response
+
+#### Success Response
+
+**Status Code:** 200 (OK)
+
+```json
+{
+  "token": "JWT_TOKEN_STRING",
+  "captain": {
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "status": "string",
+    "vehicle": {
+      "colour": "string",
+      "plate": "string",
+      "model": "string",
+      "capacity": "number",
+      "vehicleType": "string"
+    },
+    "_id": "string"
+  }
+}
+```
+
+#### Error Response
+
+**Status Code:** 401 (Unauthorized)
+
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+## Captain Profile
+
+### Endpoint: `/captains/profile`
+
+**Method:** GET
+
+**Description:**
+Retrieve the current captain's profile information.
+
+### Headers Required
+
+```json
+{
+  "Authorization": "Bearer JWT_TOKEN_STRING"
+}
+```
+
+### Response
+
+#### Success Response
+
+**Status Code:** 200 (OK)
+
+```json
+{
+  "captain": {
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "status": "string",
+    "vehicle": {
+      "colour": "string",
+      "plate": "string",
+      "model": "string",
+      "capacity": "number",
+      "vehicleType": "string"
+    },
+    "_id": "string"
+  }
+}
+```
+
+#### Error Response
+
+**Status Code:** 401 (Unauthorized)
+
+```json
+{
+  "message": "Authentication required"
+}
+```
+
+## Captain Logout
+
+### Endpoint: `/captains/logout`
+
+**Method:** POST
+
+**Description:**
+Invalidate the captain's current session and JWT token.
+
+### Headers Required
+
+```json
+{
+  "Authorization": "Bearer JWT_TOKEN_STRING"
+}
+```
+
+### Response
+
+#### Success Response
+
+**Status Code:** 200 (OK)
+
+```json
+{
+  "message": "logout successfully"
+}
+```
+
+#### Error Response
+
+**Status Code:** 401 (Unauthorized)
+
+```json
+{
+  "message": "Authentication required"
+}
+```
+
+### Examples
+
+#### Example Login Request
+
+```bash
+curl -X POST http://localhost:3000/captains/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john.driver@example.com",
+    "password": "securepass123"
+  }'
+```
+
+#### Example Profile Request
+
+```bash
+curl -X GET http://localhost:3000/captains/profile \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
+
+#### Example Logout Request
+
+```bash
+curl -X POST http://localhost:3000/captains/logout \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
