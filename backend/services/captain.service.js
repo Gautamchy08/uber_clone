@@ -6,7 +6,7 @@ module.exports.createCaptain = async ({
   email,
   password,
   status,
-  vehicle: { colour, plate, model, capacity, vehicleType }
+  vehicle: { colour, plate, capacity, vehicleType }
 }) => {
   if (
     !firstname ||
@@ -14,7 +14,6 @@ module.exports.createCaptain = async ({
     !password ||
     !colour ||
     !plate ||
-    !model ||
     !capacity ||
     !vehicleType
   ) {
@@ -31,7 +30,6 @@ module.exports.createCaptain = async ({
     vehicle: {
       colour,
       plate,
-      model,
       capacity,
       vehicleType
     }

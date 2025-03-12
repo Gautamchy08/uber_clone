@@ -47,11 +47,7 @@ const captainSchema = new mongoose.Schema({
       required: true,
       minlength: [3, 'plate should be atleast 3 length require']
     },
-    model: {
-      type: String,
-      required: true,
-      minlength: [3, 'model should be atleast 3 length require']
-    },
+
     capacity: {
       type: Number,
       required: true,

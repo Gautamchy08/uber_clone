@@ -10,7 +10,7 @@ router.post(
     body('email').isEmail().withMessage('Invalid email'),
     body('fullname.firstname')
       .isLength({ min: 3 })
-      .withMessage('first should be atleast 3 length require'),
+      .withMessage(' behenchodd first should be atleast 3 length require'),
     body('password').isLength({ min: 6 }).withMessage('must contain 6 length'),
     body('vehicle.colour')
       .isLength({ min: 3 })
@@ -18,9 +18,9 @@ router.post(
     body('vehicle.plate')
       .isLength({ min: 3 })
       .withMessage('plate should be atleast 3 length require'),
-    body('vehicle.model')
-      .isLength({ min: 3 })
-      .withMessage('model should be atleast 3 length require'),
+    // body('vehicle.model')
+    //   .isLength({ min: 3 })
+    //   .withMessage('model should be atleast 3 length require'),
     body('vehicle.capacity')
       .isLength({ min: 1 })
       .withMessage('capacity should be atleast 1'),

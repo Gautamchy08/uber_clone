@@ -1,32 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-const UserSignup = () => {
-  const [firstName, setfirstName] = useState('')
-  const [lastName, setlastName] = useState('')
-  const [email, setemail] = useState('')
-  const [password, setpassword] = useState('')
-  const [userdata, setuserdata] = useState({})
-  useEffect(() => {}, [userdata])
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { UserDataContext } from '../context/UserContext'
+import React, { useState, useContext } from 'react'
 
-  const submitHandler = e => {
+const UserSignup = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [userData, setUserData] = useState({})
+
+  const navigate = useNavigate()
+
+  const { user, setUser } = useContext(UserDataContext)
+
+  const submitHandler = async e => {
     e.preventDefault()
-    setuserdata({
-      fullName: {
-        firstName: firstName,
-        lastName: lastName
+    const newUser = {
+      fullname: {
+        firstname: firstName,
+        lastname: lastName
       },
       email: email,
       password: password
-    })
+    }
 
-    setemail('')
-    setpassword('')
-    setfirstName('')
-    setlastName('')
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/users/register`,
+      newUser
+    )
+    console.log('here is you response', response)
+    if (response.status === 200) {
+      const data = response.data
+      console.log('succesfull')
+      setUser(data.user)
+      localStorage.setItem('token', data.token)
+      navigate('/home')
+    }
+    setEmail('')
+    setPassword('')
+    setFirstName('')
+    setLastName('')
   }
   return (
-    <div className='p-7 flex flex-col justify-between h-screen'>
+    <div className='p-7 flex flex-col justify-between h-screen '>
       <div className='p-7'>
         <img
           className='w-16 mb-10'
@@ -46,7 +63,7 @@ const UserSignup = () => {
               type='text'
               placeholder=' first name'
               value={firstName}
-              onChange={e => setfirstName(e.target.value)}
+              onChange={e => setFirstName(e.target.value)}
             />
             <input
               className='bg-[#EEEEEE] rounded px-2 py-4 border w-1/2 text-base placeholder:text-sm'
@@ -54,7 +71,7 @@ const UserSignup = () => {
               type='text'
               placeholder=' second name'
               value={lastName}
-              onChange={e => setlastName(e.target.value)}
+              onChange={e => setLastName(e.target.value)}
             />
           </div>
 
@@ -65,7 +82,7 @@ const UserSignup = () => {
             type='email'
             placeholder='email@example.com'
             value={email}
-            onChange={e => setemail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
           />
           <h3 className='text-base mb-2 font-semibold'>Enter password</h3>
           <input
@@ -74,7 +91,7 @@ const UserSignup = () => {
             type='password'
             placeholder='password'
             value={password}
-            onChange={e => setpassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
           <button className='bg-[#111]  font-semibold text-white rounded px-2 py-4 mb-5 border w-full text-lg  '>
             Signup
