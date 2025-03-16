@@ -11,7 +11,7 @@ module.exports.authUser = async (req, res, next) => {
   }
   const isBlacklisted = await blacklistModel.findOne({ token: token })
   if (isBlacklisted) {
-    return res.status(401).json({ message: 'Unauthorized' })
+    return res.status(400).json({ message: 'unauthorize' })
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
