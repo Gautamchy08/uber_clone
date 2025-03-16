@@ -2,13 +2,14 @@ import react from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { useEffect } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 import { UserDataContext } from '../context/UserContext'
 const UserProtectedWrapper = ({ children }) => {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const { user, setUser } = useContext(UserDataContext)
   const [isLoading, setIsLoading] = useState(true)
-  console.log(token)
   useEffect(() => {
     if (!token) {
       navigate('/captain-login')
