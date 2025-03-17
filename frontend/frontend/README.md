@@ -7,81 +7,156 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Frontend Endpoints
+## Frontend Pages
 
 ### Home Page (/)
 
-- Description: Landing page of the application
-- Method: GET
-- Components:
-  - Hero image
-  - "Get started with Uber" heading
-  - Continue button that redirects to login page
-- Access: Public
+- **Description:** Landing page for users to book rides
+- **Key Features:**
+  - Interactive map display
+  - Location search functionality
+  - Vehicle selection panel
+  - Ride confirmation flow
+- **Components Used:**
+  - LocationSearchPanel
+  - VehiclePanel
+  - ConfirmRide
+  - LookingForDriver
+  - WaitingForDriver
 
-### Login Page (/login)
+### Captain Home Page (/captain-Home)
 
-- Description: User authentication page
-- Method: GET
-- Components:
-  - Email input field
-  - Password input field
-  - Login button
-  - Link to signup page
-  - Link to captain login
-- Form Data:
-  - email: string
-  - password: string
-- Access: Public
+- **Description:** Dashboard for ride captains
+- **Key Features:**
+  - Ride request notifications
+  - Earnings display
+  - Profile information
+  - Active ride management
+- **Components Used:**
+  - CaptainDetails
+  - RidePopUp
+  - ConfirmRidePopUp
 
-### Signup Page (/signup)
+### Riding Page (/riding)
 
-- Description: New user registration page
-- Method: GET
-- Components:
-  - First name input
-  - Last name input
-  - Email input
-  - Password input
-  - Signup button
-  - Link to login page
-- Form Data:
-  - firstName: string
-  - lastName: string
-  - email: string
-  - password: string
-- Access: Public
+- **Description:** Active ride tracking for users
+- **Key Features:**
+  - Live ride status
+  - Driver details
+  - Route visualization
+  - Payment interface
+- **Components Used:**
+  - Current ride details
+  - Payment processing
 
-### Captain Login Page (/captain-Login)
+### Captain Riding Page (/captain-riding)
 
-- Description: Captain authentication page
-- Method: GET
-- Components:
-  - Email input field
-  - Password input field
-  - Login button
-  - Link to captain signup
-  - Link to user login
-- Form Data:
-  - email: string
-  - password: string
-- Access: Public
+- **Description:** Active ride management for captains
+- **Key Features:**
+  - Navigation assistance
+  - Ride completion flow
+  - Payment confirmation
+- **Components Used:**
+  - FinishRide
+  - Navigation controls
 
-### Captain Signup Page (/captain-Signup)
+## Components
 
-- Description: New captain registration page
-- Method: GET
-- Components:
-  - First name input
-  - Last name input
-  - Email input
-  - Password input
-  - Signup button
-  - Link to captain login
-  - Privacy policy notice
-- Form Data:
-  - firstName: string
-  - lastName: string
-  - email: string
-  - password: string
-- Access: Public
+### Location Related
+
+- **LocationSearchPanel:**
+  - Handles location search and selection
+  - Displays suggested locations
+  - Triggers vehicle panel on selection
+
+### Vehicle Related
+
+- **VehiclePanel:**
+  - Shows available vehicle types
+  - Displays pricing information
+  - Handles vehicle selection
+
+### Ride Management
+
+- **ConfirmRide:**
+
+  - Shows ride summary
+  - Handles ride confirmation
+  - Displays pricing details
+
+- **RidePopUp:**
+
+  - Notification for new ride requests
+  - Shows user details and route
+  - Accept/Reject functionality
+
+- **ConfirmRidePopUp:**
+
+  - OTP verification
+  - Final ride confirmation
+  - Ride details display
+
+- **LookingForDriver:**
+
+  - Loading state while finding driver
+  - Cancellation option
+  - Status updates
+
+- **WaitingForDriver:**
+
+  - Shows assigned driver details
+  - Displays vehicle information
+  - ETA information
+
+- **FinishRide:**
+  - Ride completion interface
+  - Payment confirmation
+  - Rating prompt
+
+### User Interface
+
+- **CaptainDetails:**
+  - Profile information
+  - Earnings display
+  - Performance metrics
+
+## Authentication Flow
+
+### User Authentication
+
+- Login/Signup pages
+- JWT token management
+- Protected route handling
+
+### Captain Authentication
+
+- Separate login/signup flow
+- Vehicle information collection
+- Profile management
+
+## Data Management
+
+- **Context:**
+  - UserContext for user data
+  - CaptainContext for captain data
+- **Protected Routes:**
+  - UserProtectedWrapper
+  - CaptainProtectedWrapper
+
+## Animation and Transitions
+
+- GSAP animations for panels
+- Smooth transitions between states
+- Loading animations
+
+## API Integration
+
+- Axios for HTTP requests
+- Environment variable configuration
+- Error handling
+
+## Styling
+
+- Tailwind CSS for styling
+- Responsive design
+- Custom animations
