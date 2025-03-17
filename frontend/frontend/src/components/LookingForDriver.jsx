@@ -5,7 +5,7 @@ const LookingForDriver = props => {
     <div>
       <h5
         onClick={() => {
-          props.setConfirmRidePanel(false)
+          props.setVehicleFound(false)
         }}
         className='p-3 text-center w-[93%] absolute top-0  '
       >
