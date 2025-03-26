@@ -1,5 +1,5 @@
 const express = require('express')
-const captainController = require('../controller/captain.controller')
+const captainController = require('../controllers/captain.controller')
 const { body } = require('express-validator')
 const router = express.Router()
 const authMiddleware = require('../middleware/auth.middleware')
