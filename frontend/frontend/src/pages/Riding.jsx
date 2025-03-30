@@ -1,6 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const Riding = () => {
+import { useLocation } from 'react-router-dom'
+import { SocketContext } from '../context/SocketContext'
+import { useContext } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import LiveTracking from '../components/LiveTracking'
+const Riding = props => {
+  const location = useLocation()
+  const { ride } = location.state || {}
+  const { socket } = useContext(SocketContext)
+  const navigate = useNavigate()
+
+  socket.on('ride-ended', () => {
+    navigate('/home')
+  })
+
   return (
     <div className='h-screen'>
       <Link
@@ -10,11 +25,7 @@ const Riding = () => {
         <i className=' font-semibold text-lg ri-home-4-line'></i>
       </Link>
       <div className='h-1/2'>
-        <img
-          className='h-full w-full object-cover'
-          src='https://blog.imqa.io/content/images/2021/03/uber-sample.gif'
-          alt=''
-        />
+        <LiveTracking />
       </div>
       <div className='h-1/2 p-4'>
         <div className='flex items-center justify-between'>
@@ -24,8 +35,14 @@ const Riding = () => {
             alt=''
           />
           <div className='text-right'>
-            <h2 className='text-lg font-medium capitalize'>Prince Samman</h2>
-            <h4 className='text-xl font-semibold -mt-1 -mb-1'>BR-01-2843</h4>
+            <h2 className='text-lg font-medium capitalize'>
+              {ride?.user.fullname.firstname +
+                ' ' +
+                ride?.user.fullname.lastname}
+            </h2>
+            <h4 className='text-xl font-semibold mt-1 mb-1'>
+              {ride?.captain.vehicle.plate}
+            </h4>
             <p className='text-sm text-gray-600'>Maruti Suzuki Alto</p>
             <h1 className='text-lg font-semibold'> </h1>
           </div>
@@ -38,15 +55,14 @@ const Riding = () => {
               <div>
                 <h3 className='text-lg font-medium'>562/11-A</h3>
                 <p className='text-sm -mt-1 text-gray-600'>
-                  {' '}
-                  Kankariya Talab, Bhopal
+                  {ride?.destination}
                 </p>
               </div>
             </div>
             <div className='flex items-center gap-5 p-3'>
               <i className='ri-currency-line'></i>
               <div>
-                <h3 className='text-lg font-medium'>₹193</h3>
+                <h3 className='text-lg font-medium'>₹{ride?.fare}</h3>
                 <p className='text-sm -mt-1 text-gray-600'>Cash Cash</p>
               </div>
             </div>

@@ -1,21 +1,9 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
 export const CaptainDataContext = createContext()
 
-export const CaptainContext = ({ children }) => {
-  const [captain, setCaptain] = useState({
-    email: '',
-    fullName: {
-      firstName: '',
-      lastName: ''
-    },
-    vehicle: {
-      colour: '',
-      plate: '',
-      capacity: '',
-      vehicleType: ''
-    }
-  })
+const CaptainContext = ({ children }) => {
+  const [captain, setCaptain] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 

@@ -47,7 +47,7 @@ const CaptainSignup = () => {
         console.log('Successful registration!')
         console.log('Response:', response.data)
         setCaptain(response.data.captain)
-        // localStorage.setItem('token', response.data.token)
+        localStorage.setItem('token', response.data.token)
         navigate('/captain-Home')
 
         // Reset form fields

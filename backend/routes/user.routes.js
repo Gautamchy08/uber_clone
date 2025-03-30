@@ -33,5 +33,5 @@ router.get('/profile', authMiddleware.authUser, userController.getUsers)
 
 router.get('/logout', authMiddleware.authUser, userController.logoutUser)
 
-module.exports = router
 router.post('/home', authMiddleware.authUser, userController.getUsers)
+module.exports = router

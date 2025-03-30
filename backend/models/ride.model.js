@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const rideSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     required: true
   },
   captain: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Captain'
+    ref: 'captain'
   },
   pickup: {
     type: String,
@@ -41,6 +41,11 @@ const rideSchema = new mongoose.Schema({
   },
   signature: {
     type: String
+  },
+  otp: {
+    type: String,
+    select: false,
+    required: true
   }
 })
 module.exports = mongoose.model('ride', rideSchema)

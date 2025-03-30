@@ -1,11 +1,17 @@
 import React from 'react'
 
-const VehiclePanel = props => {
+const VehiclePanel = ({
+  selectVehicle,
+  setConfirmRidePanel,
+  fare,
+  setVehiclePanel,
+  setVehicleFound
+}) => {
   return (
     <div>
       <h5
         onClick={() => {
-          props.setVehiclePanel(false)
+          setVehiclePanel(false)
         }}
         className='p-3 text-center w-[93%] absolute top-0  '
       >
@@ -14,7 +20,9 @@ const VehiclePanel = props => {
       <h3 className='text-2xl font-semibold mb-5'>Choose a Vehicle</h3>
       <div
         onClick={() => {
-          props.setConfirmRidePanel(true)
+          selectVehicle('car')
+          setConfirmRidePanel(true)
+          setVehicleFound(true)
         }}
         className='  w-full flex items-center justify-between p-1 mb-2  active:border-2 bg-gray-100  active:border-black  active:rounded-xl'
       >
@@ -35,11 +43,13 @@ const VehiclePanel = props => {
             Affordable, compact rides
           </p>
         </div>
-        <h2 className='text-xl font-semibold'>$193.20</h2>
+        <h2 className='text-xl font-semibold'> ₹{fare.car}</h2>
       </div>
       <div
         onClick={() => {
-          props.setConfirmRidePanel(true)
+          selectVehicle('motorcycle')
+          setConfirmRidePanel(true)
+          setVehicleFound(true)
         }}
         className='  w-full flex items-center justify-between p-1 mb-2  active:border-2  bg-gray-100 active:border-black active:rounded-xl'
       >
@@ -58,11 +68,13 @@ const VehiclePanel = props => {
           <h5 className='font-medium text-m '>3 mins away</h5>
           <p className='font-normal text-xs text-gray-600 '>Moto Rides</p>
         </div>
-        <h2 className='text-xl font-semibold'>$65.00</h2>
+        <h2 className='text-xl font-semibold'>₹{fare.motorcycle}</h2>
       </div>
       <div
         onClick={() => {
-          props.setConfirmRidePanel(true)
+          selectVehicle('auto')
+          setConfirmRidePanel(true)
+          setVehicleFound(true)
         }}
         className='  w-full flex items-center justify-between p-1 mb-2 active:border-2 bg-gray-100 active:border-black active:rounded-xl'
       >
@@ -81,7 +93,7 @@ const VehiclePanel = props => {
           <h5 className='font-medium text-m '>2 mins away</h5>
           <p className='font-normal text-xs text-gray-600 '>Auto rides</p>
         </div>
-        <h2 className='text-xl font-semibold'>$118.68</h2>
+        <h2 className='text-xl font-semibold'>₹{fare.auto}</h2>
       </div>
     </div>
   )

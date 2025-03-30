@@ -34,17 +34,20 @@ module.exports.getDistanceTime = async (req, res) => {
   }
 }
 
-module.exports.getAutocompleteSuggestions = async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
-  }
+module.exports.getAutoCompleteSuggestions = async (req, res, next) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
     const { input } = req.query
-    const suggestions = await mapService.getAutocompleteSuggestions(input)
+
+    const suggestions = await mapService.getAutoCompleteSuggestions(input)
+
     res.status(200).json(suggestions)
-  } catch (error) {
-    console.error('Error fetching suggestions:', error)
-    res.status(404).json({ error: 'Suggestions not found' })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Internal server error' })
   }
 }

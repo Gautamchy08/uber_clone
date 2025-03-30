@@ -160,3 +160,40 @@ Currently, two official plugins are available:
 - Tailwind CSS for styling
 - Responsive design
 - Custom animations
+
+## Socket.io Integration in Frontend
+
+The frontend uses **Socket.io** to enable real-time communication with the backend. This ensures seamless updates for ride status, driver notifications, and location tracking.
+
+### Key Features of Socket.io in Frontend
+
+1. **Real-Time Updates**:
+
+   - Users receive live updates about ride status (e.g., "Driver Assigned", "Ride Started", "Ride Completed").
+   - Captains are notified in real-time when new ride requests are available.
+
+2. **Location Tracking**:
+
+   - Captains' locations are updated in real-time and sent to the backend every 10 seconds using geolocation APIs.
+   - Users can track the live location of their assigned driver.
+
+3. **Ride Status Management**:
+
+   - Users and captains are notified of ride status changes (e.g., "Ride Confirmed", "Ride Started", "Ride Completed").
+
+4. **Error Handling**:
+   - Handles connection errors and reconnections seamlessly to ensure a smooth user experience.
+
+---
+
+### Socket.io Workflow in Frontend
+
+#### For Users
+
+1. **Joining the Socket Room**:
+   - When a user logs in, they join a socket room using their user ID.
+   ```javascript
+   useEffect(() => {
+     socket.emit('join', { userType: 'user', userId: user._id })
+   }, [user])
+   ```

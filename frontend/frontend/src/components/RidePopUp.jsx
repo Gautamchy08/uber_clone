@@ -19,7 +19,11 @@ const RidePopUp = props => {
             src='https://tse3.mm.bing.net/th?id=OIP.59hYtOrco0EZe3thkO8j1AHaE7&pid=Api&P=0&h=180'
             alt=''
           />
-          <h2 className='text-lg font-medium '>Ankita</h2>
+          <h2 className='text-lg font-medium '>
+            {props.ride?.user.fullname.firstname +
+              ' ' +
+              props.ride?.user.fullname.lastname}
+          </h2>
         </div>
         <h5 className='text-lg font-semibold'>2.2 KM</h5>
       </div>
@@ -30,7 +34,7 @@ const RidePopUp = props => {
             <div>
               <h3 className='text-lg font-medium'> 562/11-A</h3>
               <p className='text-sm -mt-1 text-gray-600'>
-                Kankariya Talab, Bhopal
+                {props.ride?.pickup}
               </p>
             </div>
           </div>
@@ -39,15 +43,14 @@ const RidePopUp = props => {
             <div>
               <h3 className='text-lg font-medium'>562/11-A</h3>
               <p className='text-sm -mt-1 text-gray-600'>
-                {' '}
-                Kankariya Talab, Bhopal
+                {props.ride?.destination}
               </p>
             </div>
           </div>
           <div className='flex items-center gap-5 p-3'>
             <i className='ri-currency-line'></i>
             <div>
-              <h3 className='text-lg font-medium'>₹193</h3>
+              <h3 className='text-lg font-medium'>₹{props.ride?.fare}</h3>
               <p className='text-sm -mt-1 text-gray-600'>Cash Cash</p>
             </div>
           </div>
@@ -56,6 +59,7 @@ const RidePopUp = props => {
           onClick={() => {
             props.setRidePopupPanel(false)
             props.setConfirmRidePopUpPanel(true)
+            props.confirmRide()
           }}
           className='w-full mt-2 font-semibold p-2 rounded-lg text-white bg-green-600'
         >

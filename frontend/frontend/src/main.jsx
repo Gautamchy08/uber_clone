@@ -6,14 +6,15 @@ import App from './App'
 import UserContext from './context/UserContext'
 import './index.css'
 import Captaincontext from './context/CaptainContext'
+import SocketProvider from './context/SocketContext'
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Captaincontext>
-      <UserContext>
+  <Captaincontext>
+    <UserContext>
+      <SocketProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </UserContext>
-    </Captaincontext>
-  </StrictMode>
+      </SocketProvider>
+    </UserContext>
+  </Captaincontext>
 )
