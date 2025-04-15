@@ -183,7 +183,7 @@ const home = () => {
     function () {
       if (vehiclePanel) {
         gsap.to(vehiclePanelRef.current, {
-          transform: 'translateY(0)'
+          transform: 'translateY(0%)'
         })
       } else {
         gsap.to(vehiclePanelRef.current, {
@@ -197,7 +197,7 @@ const home = () => {
     function () {
       if (waitingForDriver) {
         gsap.to(waitingForDriverRef.current, {
-          transform: 'translateY(0)'
+          transform: 'translateY(0%)'
         })
       } else {
         gsap.to(waitingForDriverRef.current, {
@@ -211,7 +211,7 @@ const home = () => {
     function () {
       if (vehicleFound) {
         gsap.to(vehicleFoundRef.current, {
-          transform: 'translateY(0)'
+          transform: 'translateY(0%)'
         })
       } else {
         gsap.to(vehicleFoundRef.current, {
@@ -226,7 +226,7 @@ const home = () => {
     function () {
       if (confirmRidePanel) {
         gsap.to(confirmRidePanelRef.current, {
-          transform: 'translateY(0)'
+          transform: 'translateY(0%)'
         })
       } else {
         gsap.to(confirmRidePanelRef.current, {

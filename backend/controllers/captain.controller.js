@@ -43,8 +43,10 @@ module.exports.loginCaptain = async (req, res, next) => {
   }
 
   const { email, password } = req.body
+  console.log('console from controller', email, password)
 
   const captain = await captainModel.findOne({ email }).select('+password')
+  console.log(captain)
   if (!captain) {
     return res.status(401).json({ message: 'invalid email or password' })
   }
