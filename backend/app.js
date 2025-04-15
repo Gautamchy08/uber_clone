@@ -10,7 +10,12 @@ const cookieParser = require('cookie-parser')
 const connectToDb = require('./db/db')
 const rideRoutes = require('./routes/ride.routes')
 
-app.use(cors())
+app.use(
+  cors({
+    origin: 'https://uber-clone-topaz.vercel.app', // your frontend URL
+    credentials: true
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
