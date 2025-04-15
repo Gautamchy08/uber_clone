@@ -7,7 +7,7 @@ let io
 const initializeSocket = server => {
   io = socketIo(server, {
     cors: {
-      origin: '*', // Vite's default port
+      origin: 'https://uber-clone-topaz.vercel.app', // Vite's default port
       methods: ['GET', 'POST']
     }
   })
