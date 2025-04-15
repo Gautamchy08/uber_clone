@@ -29,7 +29,10 @@ const UserSignup = () => {
       `https://uberclone-production-a364.up.railway.app/users/register`,
       newUser
     )
+    console.log(import.meta.env.VITE_BASE_URL)
+
     console.log('here is you response', response)
+
     if (response.status === 200) {
       const data = response.data
       console.log('succesfull')
