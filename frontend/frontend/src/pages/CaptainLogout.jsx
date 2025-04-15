@@ -6,7 +6,7 @@ const captainLogout = () => {
   const token = localStorage.getItem('token')
   axios
     .get(`${import.meta.env.VITE_BASE_URL}/captains/logout`, {
-      header: {
+      headers: {
         Authorization: `bearer ${token}`
       }
     })
