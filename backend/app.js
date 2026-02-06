@@ -12,7 +12,8 @@ const rideRoutes = require('./routes/ride.routes')
 
 app.use(
   cors({
-    origin: 'https://uber-clone-topaz.vercel.app', // your frontend URL
+    // origin: 'https://uber-clone-topaz.vercel.app', // your frontend URL
+    origing: '*',
     credentials: true
   })
 )

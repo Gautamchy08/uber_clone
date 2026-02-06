@@ -4,18 +4,21 @@ const { validationResult } = require('express-validator')
 const BlacklistTokenModel = require('../models/blacklist.model')
 
 module.exports.registerUser = async (req, res, next) => {
+  // checking data format is correct or not
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errrors: errors.array() })
   }
 
   const { fullname, email, password } = req.body
+  // checking if user already exist or not
   isUserAlreadyExist = await userModel.findOne({ email })
   if (isUserAlreadyExist) {
     return res.status(400).json({ message: 'User already exist' })
   }
+  // hashing password
   const hashedPassword = await userModel.hashPassword(password)
-
+  //data send to user service to craete user
   const user = await userService.createUser({
     firstname: fullname.firstname,
     lastname: fullname.lastname,
@@ -24,7 +27,10 @@ module.exports.registerUser = async (req, res, next) => {
   })
 
   const token = user.generateAuthToken()
-  res.status(200).json({ token, user })
+  // setting cookie
+  res.cookie('token', token)
+  // sending response
+  res.status(200).json( 'user created', { token, user })
 }
 
 module.exports.loginUser = async (req, res, next) => {

@@ -10,17 +10,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "**Method:** POST",
   "dependencies": {
     "axios": "^1.8.3",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "env": "^0.0.2",
     "express": "^4.21.2",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.0",
+    "mongoose": "^8.14.2",
     "socket.io": "^4.8.1"
-  }
+  },
+  "devDependencies": {}
 }

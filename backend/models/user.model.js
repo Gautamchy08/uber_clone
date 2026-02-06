@@ -47,6 +47,9 @@ userSchema.methods.comparePassword = async function (password) {
 }
 
 userSchema.statics.hashPassword = async password => {
+  if (!password) {
+    throw new Error('Password missing for hashing.')
+  }
   return await bcrypt.hash(password, 10)
 }
 

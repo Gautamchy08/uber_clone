@@ -26,7 +26,7 @@ const UserSignup = () => {
     }
 
     const response = await axios.post(
-      `https://uberclone-production-a364.up.railway.app/users/register`,
+      `${import.meta.env.VITE_BASE_URL}/users/register`,
       newUser
     )
     console.log(import.meta.env.VITE_BASE_URL)

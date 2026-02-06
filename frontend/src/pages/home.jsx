@@ -236,7 +236,7 @@ const home = () => {
     },
     [confirmRidePanel]
   )
-
+ 
   return (
     <div className='relative h-screen overflow-hidden'>
       <LiveTracking />
